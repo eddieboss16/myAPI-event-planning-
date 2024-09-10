@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 
+// import product routes
+const productRoutes = require("./routes/product");
+
 require("dotenv-flow").config();
 
 //route
@@ -21,6 +24,8 @@ mongoose.connect
 
 mongoose.connection.once("open", () => console.log("Connected successfully to MongoDB"));
 
+// post, put, delete -> CRUD
+app.use("/api/product", productRoutes);
 
 const PORT = process.env.PORT || 4000;
 
